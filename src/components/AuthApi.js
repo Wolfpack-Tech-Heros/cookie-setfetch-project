@@ -1,6 +1,5 @@
 import React from 'react';
-const AuthApi = React.createContext({
-    auth: true,
-    setAuth: () =>{}
-});
+
+const AuthApi = React.createContext();
+
 export default AuthApi;

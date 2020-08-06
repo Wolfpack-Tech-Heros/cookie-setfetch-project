@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useContext} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,18 +6,18 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import AuthApi from "./components/AuthApi";
 
+import AuthApi from './components/AuthApi'
 import './App.css';
 
 
 function App() {
 
-  const [auth, setAuth] = React.useState(false);
+  const [auth,setAuth] = useState(false);
 
   return (
     <div className="App">
-      <AuthApi.Provider value={(auth,setAuth)}>
+      <AuthApi.Provider value={{auth,setAuth}}>
       <Router>
         <Routes />
       </Router>
@@ -29,7 +29,7 @@ function App() {
 //Login
 const Login = () => {
   
-  const Auth = React.useContext(AuthApi);
+  const Auth = useContext(AuthApi);
 
   const handleOnClick = ()=>{
     
@@ -54,7 +54,8 @@ const Dashboard = () => {
 }
 
 const Routes = () => {
-  const Auth = React.useContext(AuthApi);
+  const Auth = useContext(AuthApi);
+  console.log(Auth.auth);
   return (
     <Switch>
       <ProtectedLogin path="/login" auth={Auth.auth} component={Login}  />
