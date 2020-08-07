@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import {
     Switch,
+    Redirect
   } from 'react-router-dom';
   
 
@@ -15,6 +16,7 @@ function Routes() {
         <Switch>
         <ProtectedLogin path="/login" auth={Auth.auth} />
         <ProtectedRoute path="/dashboard" auth={Auth.auth} />
+        <Redirect to="/login" />
         </Switch>
     )
 }
