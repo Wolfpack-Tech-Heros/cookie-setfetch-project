@@ -1,4 +1,4 @@
-import React,{useState, useContext} from 'react';
+import React,{useState, useContext, useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,7 +6,7 @@ import {
   Redirect
 } from 'react-router-dom';
 
-
+import Cookies from 'js-cookie'
 import AuthApi from './components/AuthApi'
 import './App.css';
 
@@ -14,6 +14,17 @@ import './App.css';
 function App() {
 
   const [auth,setAuth] = useState(false);
+
+  const readCookie = ()=>{
+    const user = Cookies.get("user",{ expires: 1 })
+    if(user){
+      setAuth(true)
+    }
+  }
+
+  useEffect(() => {
+    readCookie();
+  }, [])
 
   return (
     <div className="App">
@@ -32,8 +43,8 @@ const Login = () => {
   const Auth = useContext(AuthApi);
 
   const handleOnClick = ()=>{
-    
     Auth.setAuth(true);
+    Cookies.set('user','loginTrue')
   }
   return (
     <div>
@@ -45,10 +56,18 @@ const Login = () => {
 
 //Dashboard
 const Dashboard = () => {
+
+  const Auth = useContext(AuthApi);
+
+  const handleOnClick = ()=>{
+    Auth.setAuth(false)
+    Cookies.remove('user')
+  }
+
   return (
     <div>
       <h1>Dashboard</h1>
-      <button>Logout</button>
+      <button onClick={handleOnClick}>Logout</button>
     </div>
   )
 }
