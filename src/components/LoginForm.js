@@ -34,7 +34,6 @@ function LoginForm() {
           <Form>
             <FormikControl
               control="input"
-              // control='chakraInput'
               type="email"
               label="Email"
               name="email"
@@ -46,7 +45,7 @@ function LoginForm() {
               name="password"
             />
             <button type="submit" disabled={!formik.isValid}>
-              Submit
+              Login
             </button>
           </Form>
         );
