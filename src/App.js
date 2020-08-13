@@ -39,7 +39,7 @@ function App() {
 
 //Login
 const Login = () => {
-  
+
   const Auth = useContext(AuthApi);
 
   const handleOnClick = ()=>{
@@ -75,6 +75,7 @@ const Dashboard = () => {
 const Routes = () => {
   const Auth = useContext(AuthApi);
   console.log(Auth.auth);
+  console.log("this is a test");
   return (
     <Switch>
       <ProtectedLogin path="/login" auth={Auth.auth} component={Login}  />
@@ -85,7 +86,7 @@ const Routes = () => {
 
 const ProtectedRoute = ({auth,component: Component, ...rest}) => {
   return (
-    <Route 
+    <Route
     {...rest}
     render = {()=> auth?(
       <Component />
@@ -100,7 +101,7 @@ const ProtectedRoute = ({auth,component: Component, ...rest}) => {
 
 const ProtectedLogin = ({auth,component: Component, ...rest}) => {
   return (
-    <Route 
+    <Route
     {...rest}
     render = {()=> !auth?(
       <Component />
@@ -114,5 +115,3 @@ const ProtectedLogin = ({auth,component: Component, ...rest}) => {
 }
 
 export default App;
-
-
