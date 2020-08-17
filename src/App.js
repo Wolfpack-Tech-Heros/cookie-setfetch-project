@@ -22,7 +22,7 @@ function App() {
   }
 
   const callAPI= () => {
-    fetch('http://localhost:5000/testAPI')
+    fetch('https://cookie-set-backend.herokuapp.com/testAPI')
     .then(res=>res.text())
     .then(res=> setapiResponse(res));
   }
