@@ -12,6 +12,7 @@ import Routes from './components/Routes';
 function App() {
 
   const [auth,setAuth] = useState(false);
+  const [apiResponse,setapiResponse] = useState('');
 
   const readCookie = ()=>{
     const user = Cookies.get("user",{ expires: 1 })
@@ -20,8 +21,15 @@ function App() {
     }
   }
 
+  const callAPI= () => {
+    fetch('http://localhost:5000/testAPI')
+    .then(res=>res.text())
+    .then(res=> setapiResponse(res));
+  }
+
   useEffect(() => {
     readCookie();
+    callAPI();
   }, [])
 
   return (
@@ -31,6 +39,7 @@ function App() {
         <Routes />
       </Router>
       </AuthApi.Provider>
+  <h1>{apiResponse}</h1>
     </div>
   );
 }
