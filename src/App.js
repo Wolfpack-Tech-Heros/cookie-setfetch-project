@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 
 import Cookies from 'js-cookie'
+
 import AuthApi from './components/AuthApi'
 import './App.css';
 import Routes from './components/Routes';
@@ -21,7 +22,7 @@ function App() {
     }
   }
 
-  const callAPI= () => {
+  /*const callAPI= () => {
     fetch('https://cookie-set-backend.herokuapp.com/testAPI')
     .then(res=>res.text())
     .then(res=> setapiResponse(res));
@@ -30,7 +31,7 @@ function App() {
   useEffect(() => {
     readCookie();
     callAPI();
-  }, [])
+  }, [])*/
 
   return (
     <div className="App">
@@ -39,7 +40,6 @@ function App() {
         <Routes />
       </Router>
       </AuthApi.Provider>
-  <h1>{apiResponse}</h1>
     </div>
   );
 }

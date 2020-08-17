@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import FormikControl from "./FormikControl";
 import AuthApi from "./AuthApi";
 import Cookies from "js-cookie";
+import axios from 'axios';
 
 function LoginForm() {
   const Auth = useContext(AuthApi);
@@ -20,7 +21,16 @@ function LoginForm() {
 
   const onSubmit = (values) => {
     Auth.setAuth(true);
-    Cookies.set('user',values.email)
+    Cookies.set('user',values.email);
+
+    axios
+    .get('https://cookie-set-backend.herokuapp.com/testAPI')
+    .then(response => {
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   };
 
   return (
