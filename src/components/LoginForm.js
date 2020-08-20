@@ -24,11 +24,12 @@ function LoginForm() {
     Cookies.set('user',values.email);
 
     axios
-    .get('https://cookie-set-backend.herokuapp.com/testAPI')
+    .get(`${process.env.REACT_APP_BACKEND_URL}/testAPI`)
     .then(response => {
       console.log(response.data)
     })
     .catch(error => {
+      console.log("catch");
       console.log(error)
     })
   };
