@@ -12,7 +12,6 @@ import ProtectedRoute from './ProtectedRoute'
 function Routes() {
     
     const Auth = useContext(AuthApi);
-    console.log(Auth.auth);
     return (
         <Switch>
         <ProtectedLogin path="/login" auth={Auth.auth} />
