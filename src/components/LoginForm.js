@@ -25,7 +25,7 @@ function LoginForm() {
     //event.preventDefault();
     
     axios
-    .get(`${process.env.REACT_APP_BACKEND_URL}/testAPI`)
+    .get(`${process.env.REACT_APP_BACKEND_URL}/getUser`)
     .then(response => {
       //console.log(response.data)
       auth.setAuth(true);
