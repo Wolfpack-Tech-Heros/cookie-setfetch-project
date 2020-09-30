@@ -21,7 +21,11 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "yup": "^0.29.3"
+    "yup": "^0.29.3",
+    "@salesforce-ux/design-system": "^2.11.9",
+    "@salesforce/design-system-react": "^0.10.19",
+    "bootstrap": "^4.4.1",
+    "babel-loader": "^8.1.0"
   },
   "scripts": {
     "start": "node server.js",

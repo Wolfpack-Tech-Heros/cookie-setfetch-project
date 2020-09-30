@@ -1,13 +1,15 @@
-import React,{useContext} from "react";
+import React,{useContext, useState} from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./FormikControl";
 import AuthApi from "./AuthApi";
 import Cookies from "js-cookie";
 import axios from 'axios';
+import Button from "@salesforce/design-system-react/lib/components/button";
 
 function LoginForm() {
-  const Auth = useContext(AuthApi);
+  const auth = useContext(AuthApi);
+  const [loadedUsers, setLoadedUsers] = useState();
 
   const initialValues = {
     email: "",
@@ -20,13 +22,14 @@ function LoginForm() {
   });
 
   const onSubmit = (values) => {
-    Auth.setAuth(true);
-    Cookies.set('user',values.email);
-
+    //event.preventDefault();
+    
     axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/testAPI`)
     .then(response => {
-      console.log(response.data)
+      //console.log(response.data)
+      auth.setAuth(true);
+      Cookies.set('user',values.email);
     })
     .catch(error => {
       console.log("catch");
@@ -35,6 +38,7 @@ function LoginForm() {
   };
 
   return (
+    
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -55,9 +59,8 @@ function LoginForm() {
               label="Password"
               name="password"
             />
-            <button type="submit" disabled={!formik.isValid}>
-              Login
-            </button>
+            <Button variant="brand" type="submit" label="Login" disabled={!formik.isValid} />
+            
           </Form>
         );
       }}
